@@ -1,0 +1,35 @@
+{% extends 'm_app1s/base.html' %}
+
+{% block page_header %}
+    <h3>Thema: {{ topic }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+        <p>Eintrag:</p>
+    <ul>
+    {% for entry in entries %}
+         <div class="card mb-3">
+         <h5 class="card-header">
+          <small>{{ entry.date_added|date:'d.m.y' }}</small>
+            {% if 'Dezimalzahl-Notation' in entry.text   %}
+                <a href="{% url 'dnum_show:dnum_show_i'  1 %}">Dezimalzahl-Notation App</a>
+            {% endif %}
+            {% if 'Zufallszahl-Muster' in entry.text   %}
+                <a href="{% url 'rw_visual:rw_visual_i' 1 %}">Zufallszahl-Muster App</a></a>
+            {% endif %}
+            {% if 'Physikalisches Pendel' in entry.text   %}
+                <a href="{% url 'pendulum_show:pendulum_show_i' 1 %}">Physikalisches Pendel App</a>
+            {% endif %}
+        </h5>
+         <div class="card-body">
+          {{ entry.text|linebreaks }}
+        </div>
+      </div>
+    {% empty %}
+      <p>Kein Eintrag vorhanden.</p>
+    {% endfor %}
+
+    </ul>
+
+{% endblock content %}

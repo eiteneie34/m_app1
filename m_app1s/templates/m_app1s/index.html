@@ -1,0 +1,26 @@
+{% extends "m_app1s/base.html" %}
+ {% block page_header %}
+     <div class="jumbotron" style="background-color:#F6F5F7">
+
+       <h1 class="display-4">Train your brain!</h1>
+
+       <p class="lead"> Die Welt der Mathematik ist einerseits interessant und spannend, anderseits oft unklar und kompliziert. <br>
+                        Die Verwendung der Visualisierungen kann den Umgang mit einigen Themen verbessern. <br>
+                        Durch Wiederholungen bekommt man ein tieferes Verständnis und ein Gefühl der Sicherheit bei der praktischen Anwendung der eigenen Kenntnisse.<br>
+                        Hier vorgestellte Apps behandeln die Themen, die oft bei Schülern und Studierenden zum Fehlern führen. <br>
+                        Außerdem wird die Eleganz der Ideen und der Algorithmen mit Animationen und Bildern unterstriechen.<br><br>
+
+                        Derzeit sind drei Apps vorhanden, die Beschreibung der Apps sind unter &lsaquo;Themen und Apps&rsaquo; zu finden.<br><br>
+
+                        Die Webseite serval Mathe Apps wird kontinuierlich weiterentwickelt, neue Apps werden hinzugefügt. Für die Nutzung der Apps ist eine einfache Registrierung notwendig.
+                        Die Nutzung ist kostenfrei.
+       </p>
+         {% if user.is_authenticated == True %}
+            <button class="btn btn-primary" type="button" disabled>Registrierung &raquo;</button>
+         {% endif %}
+         {% if user.is_authenticated != True %}
+       <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+          role="button">Registrierung &raquo;</a>
+        {% endif %}
+     </div>
+   {% endblock page_header %}

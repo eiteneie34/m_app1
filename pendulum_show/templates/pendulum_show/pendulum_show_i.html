@@ -1,0 +1,224 @@
+{% extends "m_app1s/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Physikalisches Pendel App</h3>
+{% endblock page_header %}
+{% block content %}
+<TABLE>
+<TR align="left" valign="center" >
+    <TD WIDTH="900" HEIGHT="60" >
+        <h5>Erstellung des Bildes und der Animation des Pendels</h5>
+    </TD>
+</TR>
+</TABLE>
+
+</TABLE>
+<TABLE>
+ <TR align="left" valign="center">
+    <TD WIDTH="500" HEIGHT="50" >
+        <h5><a href="{% url 'pendulum_show:new_pendulum_show' 1 %}">Eingabe der Parameter</a></h5>
+    </TD>
+ <TD WIDTH="500" HEIGHT="50" >
+        <h5><a href="https://de.wikipedia.org/wiki/Physikalisches_Pendel">Wiki: Physikalisches Pendel </a></h5>
+ </TD>
+ <TD WIDTH="500" HEIGHT="50" >
+        <h5><a href="https://de.wikipedia.org/wiki/D%C3%A4mpfung">Wiki: Dämpfung</a></h5>
+ </TD>
+ </TR>
+</TABLE>
+
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="700" HEIGHT="10">
+        <h5><br>&emsp;&nbsp;Auslenkungswinkel &alpha; in Grad:</h5>
+    </TD>
+    <TD WIDTH="120">
+        <h5><br>{{alpha_grad}}</h5>
+    </TD>
+</TR>
+
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Gravitationsbeschleunigung g in m/s&sup2;:</h5>
+    </TD>
+    <TD>
+        <h5>{{g}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Länge des Pendels l in m:</h5>
+    </TD>
+    <TD>
+        <h5>{{l}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Masse des Pendelkörpers m in kg:</h5>
+    </TD>
+    <TD>
+        <h5>{{m}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Radius des Pendelkörpers r in  m:</h5>
+    </TD>
+    <TD>
+        <h5>{{rK}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Dämpfungskonstante der Reibungskraft &delta; in kg/s:</h5>
+    </TD>
+    <TD>
+        <h5>{{deltaR}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Anzahl der Perioden des harmonischen Pendels:</h5>
+    </TD>
+    <TD>
+        <h5>{{anzahlT}}</h5>
+    </TD>
+</TR>
+</TABLE>
+<TABLE><TR><TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="left" valign="center" style="background-color:#F6F5F7">
+     <TD WIDTH="1000" HEIGHT="10">
+        <h5><br><ul>
+                <li>Animationen des Zeit- und Ortsverlaufes des Auslenkungswinkel &alpha; des Pendels zeigen dynamisch die
+                &nbsp; Berechnung der Werte. Bei der Animation des Ortsverlaufs sieht man die Bewegung der beiden Pendel
+                &nbsp; gleichzeitig.</li>
+                <li>Derzeit ist nur die Erstellung der kurzen Animationen, maximal bis ca. 3 Sekunden Laufzeit, möglich.</li>
+                <li>Auf der Animationsseite kann man aber die Beispielanimationen mit 10 Perioden anschauen.</li>
+               </ul>
+        </h5>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE><TR><TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="780" HEIGHT="80">
+        <h5>
+            <p><ul>
+            <li>Für die Erstellung der Animation des Ortsverlaufes sind einige Sekunden benötigt.</li>
+            </p></ul>
+        </h5>
+    </TD>
+    <TD WIDTH="220">
+        <h5><p>
+            <form action='pendulum_show_anim_x' method='GET'>
+                {% buttons %}
+
+                    {% if  mk_animx == False and x_max_i == True %}
+
+                        <button name="submit"   class="btn btn-primary" id="mkanim_x1">&nbsp;&nbsp;Erstellen&nbsp;&nbsp;&nbsp;</button>
+
+                            <script type="text/javascript">
+                                var reply_click = function()
+                                    {
+                                    document.getElementById("mkanim_x1").textContent  = "..... läuft .....";
+                                    }
+                                document.getElementById('mkanim_x1').onclick = reply_click;
+                            </script>
+                    {% endif %}
+                    {% if mk_animx == False and x_max_i == False %}
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;Zu&nbsp;viel!&nbsp;&nbsp;&nbsp;</button>
+
+                    {% endif %}
+
+                    {% if  mk_animx == True  %}
+
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Fertig!&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    {% endif %}
+
+
+                {% endbuttons %}
+            </form>
+        </p></h5>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE>
+    <TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="780" HEIGHT="80">
+        <h5>
+            <p><ul>
+                <li>Die Erstellung der Animation des Zeitverlaufes dauert auch einige Sekunden.</li>
+            </p></ul>
+        </h5>
+    </TD>
+    <TD WIDTH="220">
+        <h5><p>
+            <form action='pendulum_show_anim_v' method='GET'>
+                {% buttons %}
+                    {% if mk_animv == False and x_max_i == True %}
+
+                        <button name="submit"   class="btn btn-primary" id="mkanim_v1">&nbsp;&nbsp;Erstellen&nbsp;&nbsp;&nbsp;</button>
+
+                            <script type="text/javascript">
+                                var reply_click = function()
+                                    {
+                                    document.getElementById("mkanim_v1").textContent  = "..... läuft .....";
+                                    }
+                                document.getElementById('mkanim_v1').onclick = reply_click;
+                            </script>
+
+                    {% endif %}
+
+                    {% if mk_animv == False and x_max_i == False %}
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;Zu&nbsp;viel!&nbsp;&nbsp;&nbsp;</button>
+
+                    {% endif %}
+
+                    {% if mk_animv == True %}
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Fertig!&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    {% endif %}
+
+                  {% endbuttons %}
+            </form>
+        </p></h5>
+    </TD>
+    </TR>
+</TABLE>
+
+<TABLE>
+    <TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="780" HEIGHT="80">
+        <h5>
+            <p><ul>
+                <li>Nach der Erstellung kann man die Animationen anschauen. </li>
+            </p></ul>
+        </h5>
+    </TD>
+    <TD WIDTH="220">
+    <h5>
+        {% if mk_animv == False or mk_animx == False %}
+            <button class="btn btn-primary" type="button" disabled>Nicht&nbsp;bereit!</button>
+        {% endif %}
+
+        {% if mk_animv == True and mk_animx == True %}
+            <a href="{% url 'pendulum_show:pendulum_show_animations' 1 %}" class="btn btn-primary">Anschauen&nbsp;</a>
+        {% endif %}
+    </h5>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE><TR><TD WIDTH="900" HEIGHT="20" ></TD></TR></TABLE>
+<TABLE>
+    <TR>
+    <TD WIDTH="1000" HEIGHT="800">
+        <img src="{{pn_fig}}">
+    </TD>
+    </TR>
+</TABLE>
+
+{% endblock content %}
+

@@ -1,0 +1,214 @@
+{% extends "m_app1s/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Zufallszahl-Muster App</h3>
+{% endblock page_header %}
+
+{% block content %}
+<TABLE>
+<TR align="left" valign="center" >
+    <TD WIDTH="900" HEIGHT="60" >
+        <h5>Erstellung des Bildes und der Animation des Zufalsmusters</h5>
+    </TD>
+</TR>
+
+</TABLE>
+<TABLE>
+ <TR align="left" valign="center">
+    <TD WIDTH="500" HEIGHT="50" >
+        <h5><a href="{% url 'rw_visual:new_rw_visual' 1 %}"> Eingabe der Parameter  </a></h5>
+    </TD>
+ <TD WIDTH="400" HEIGHT="50" >
+        <h5><a href="https://de.wikipedia.org/wiki/Zufallszahl">Wiki: Zufallszahl</a></h5>
+ </TD>
+ <TD WIDTH="500" HEIGHT="50" >
+        <h5><a href="https://de.wikipedia.org/wiki/Zufallszahlengenerator">Wiki: Zufallszahlengenerator</a></h5>
+ </TD>
+ </TR>
+</TABLE>
+
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="700" HEIGHT="10" >
+        <h5><br>&emsp;&nbsp;Anzahl der Schritte:</h5>
+    </TD>
+    <TD WIDTH="150">
+        <h5><br>{{num_points}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Horizontale Abweichung:</h5>
+    </TD>
+    <TD>
+        <h5>{{x_distance_str}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Senkrechte Abweichung:</h5>
+    </TD>
+    <TD>
+        <h5>{{y_distance_str}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Form des Punktes:</h5>
+    </TD>
+    <TD>
+        <h5>{{dot_marker_label}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Punktgröße:</h5>
+    </TD>
+    <TD>
+        <h5>{{dot_size}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Transparenz des Punktes:</h5>
+    </TD>
+    <TD>
+        <h5>{{dot_alpha}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="top" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Punktfarbe:<br>
+            &emsp;&nbsp;&nbsp;aktiv nur, wenn beim&nbsp;&lsaquo;Farbverlauf&nbsp;der&nbsp;Punkte&rsaquo;<br>&emsp;&nbsp;&nbsp;&lsaquo;kein Farbvelauf&rsaquo;&nbsp;gesetzt ist </h5>
+    </TD>
+    <TD >
+        <h5>{{dot_color}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Farbverlauf der Punkte:</h5>
+    </TD>
+    <TD>
+        <h5>{{dot_cmap_label}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Hintergrundfarbe:</h5>
+    </TD>
+    <TD>
+        <h5>{{ax_color}}</h5>
+    </TD>
+</TR>
+</TABLE>
+<TABLE><TR> <TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="left" valign="center" style="background-color:#F6F5F7">
+     <TD WIDTH="1000" HEIGHT="10">
+        <h5><br>
+            <p><ul>
+                <li>Animationen Ortsverlaufes des Zufallspfades des Punktes zeigen die Berechnung der Werte mit und ohne Spur.</li>
+                <li>Aktuell ist nur die Erstellung einer kurzen Animation möglich. Die maximale zulässige Anzahl der Schritte liegt bei 500.</li>
+                <li>Auf der Animationsseite kann man aber die Beispielanimationen bis 10 000 Schritten anschauen.</li>
+            </p></ul>
+        </h5>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE><TR> <TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="780" HEIGHT="80">
+        <h5><br>
+            <p><ul>
+                <li>Zuerst soll die Animation erstellt werden, es dauert einige Sekunden.</li>
+            </p></ul>
+        </h5>
+    </TD>
+
+    <TD WIDTH="220" HEIGHT="80">
+        <h5><br>
+            <form action='rw_visual_anim_v' method='GET'>
+                {% buttons %}
+
+                    {% if mk_anim == False  and num_points_i == True %}
+
+                        <button name="submit"   class="btn btn-primary" id="mkanimv">&nbsp;&nbsp;Erstellen&nbsp;&nbsp;&nbsp;</button>
+
+                            <script type="text/javascript">
+                                var reply_click = function()
+                                    {
+                                    document.getElementById("mkanimv").textContent  = "..... läuft .....";
+                                    }
+                                document.getElementById('mkanimv').onclick = reply_click;
+                            </script>
+
+
+                    {% endif %}
+                    {% if mk_anim == False  and num_points_i == False %}
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;Zu&nbsp;viel!&nbsp;&nbsp;&nbsp;</button>
+
+                    {% endif %}
+
+                    {% if mk_anim == True  %}
+                        <input type="hidden" name="next" value="{% url 'rw_visual:rw_visual_i' 1 %}" />
+
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Fertig!&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    {% endif %}
+                {% endbuttons %}
+            </form>
+        </h5>
+    </TD>
+</TR>
+</TABLE>
+
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="780" HEIGHT="80">
+        <h5>
+            <p><ul>
+            <li>Zuletzt kann man die erstellte Animation und Beispielanimationen anschauen. </li>
+            </p></ul>
+        </h5>
+    </TD>
+    <TD WIDTH="220" HEIGHT="80">
+    <h5>
+        {% if mk_anim == False  %}
+            <button class="btn btn-primary" type="button" disabled>Nicht&nbsp;bereit!</button>
+        {% endif %}
+        {% if mk_anim == True  %}
+            <a href="{% url 'rw_visual:rw_visual_animations' 1 %}" class="btn btn-primary">Anschauen&nbsp;</a>
+        {% endif %}
+    </h5>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE><TR> <TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="780" HEIGHT="10">
+        <h5><ul>Neuerstellung des Bildes mit aktuellen Parameter und einem anderen Muster.</ul></h5>
+    </TD>
+    <TD WIDTH="220" align="left" valign="center">
+     <h5>
+         <a href="{% url 'rw_visual:rw_visual_i' 1 %}" class="btn btn-primary">&nbsp;&nbsp;Erstellen&nbsp;&nbsp;&nbsp;</a>
+    </h5>
+    </TD>
+</TR>
+</TABLE>
+<TABLE><TR> <TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+<TABLE>
+    <TR>
+    <TD WIDTH="1000">
+        <img src="{{rwvisual}}">
+    </TD>
+    </TR>
+</TABLE>
+
+{% endblock content %}
+
+
+

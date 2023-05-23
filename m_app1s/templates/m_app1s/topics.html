@@ -1,0 +1,17 @@
+{% extends "m_app1s/base.html" %}
+
+{% block page_header %}
+    <h3>Themen und Apps</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+<ul>
+    {% for topic in topics %}
+        <li><h5><a href="{% url 'm_app1s:topic' topic.id %}">{{ topic }}</a></h5></li>
+    {% empty %}
+        <li><h5>Kein Thema vorhanden.</h5></li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

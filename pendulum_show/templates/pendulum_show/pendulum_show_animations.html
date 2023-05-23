@@ -1,0 +1,140 @@
+{% extends "m_app1s/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Physikalisches Pendel App</h3>
+{% endblock page_header %}
+{% block content %}
+<h5><a href="{% url 'pendulum_show:pendulum_show_i' 1 %}">Zurück zur Hauptseite der App</a></h5>
+<TABLE>
+<TR align="left" valign="center" >
+    <TD WIDTH="900" HEIGHT="60" >
+        <h5>Animation des Orts- und Zeitverlaufes des Auslenkungswinkel des Pendels und Beispielanimationen</h5>
+    </TD>
+</TR>
+ <TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="10" >
+        <h5><br><ul>Die erstellten Animationen werden ohne Vorladen-Funktion des Browsers gezeigt.</ul></h5>
+    </TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="740" HEIGHT="10">
+        <h5><ul>Aktualisieren Sie bitte die Webseite, falls die Animationen nicht aktualisiert wurden.</ul></h5>
+    </TD>
+    <TD WIDTH="160" align="left" valign="center">
+     <h5>
+         <a href="{% url 'pendulum_show:pendulum_show_animations' 1 %}" class="btn btn-primary">Aktualisieren</a>
+    </h5>
+    </TD>
+</TR>
+</TABLE>
+<TABLE><TR> <TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="700" HEIGHT="10">
+        <h5><br>&emsp;&nbsp;Auslenkungswinkel &alpha; in Grad:</h5>
+    </TD>
+    <TD WIDTH="120">
+        <h5><br>{{alpha_grad}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Länge des Pendels l in m:</h5>
+    </TD>
+    <TD>
+        <h5>{{l}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Masse des Pendelkörpers m in kg:</h5>
+    </TD>
+    <TD>
+        <h5>{{m}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD >
+        <h5>&emsp;&nbsp;Anzahl der Perioden des harmonischen Pendels:</h5>
+    </TD>
+    <TD>
+        <h5>{{anzahlT}}</h5>
+    </TD>
+</TR>
+</TABLE>
+
+<TABLE><TR><TD WIDTH="900" HEIGHT="20" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="center" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="10">
+        <h5><br>Animation des Ortsverlaufs des Auslenkungswinkels &alpha; zeigt die Bewegung der beiden Pendel gleichzeitig.
+            Dank Polarkoordinaten kann man die Bewegung sehr elegant darstellen.</h5>
+    </TD>
+    </TR>
+    <TR align="center" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="650">
+        <video controls preload="none">
+            <source src={{pn_vid_x}}  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+            Your browser does not support HTML video.
+        </video>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE><TR><TD WIDTH="900" HEIGHT="20" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="center" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="10">
+        <h5><br>Animation des Zeitverlaufs des Auslenkungswinkels &alpha; stellt die Veräderungen der Lage mit der Zeit dar.</h5>
+    </TD>
+    </TR>
+    <TR align="center" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="650">
+        <video controls preload="none">
+            <source src={{pn_vid_v}}  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+            Your browser does not support HTML video.
+        </video>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE><TR><TD WIDTH="900" HEIGHT="20" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="center" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="10">
+        <h5><br>Beispielanimation des Ortsverlaufs des Auslenkungswinkels &alpha; zeigt mithilfe
+                    der Polarkoordinaten die Bewegung über 10 Perioden.</h5>
+    </TD>
+    </TR>
+    <TR align="center" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="650">
+        <video controls>
+            <source src={{pn_vid_a}}  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+            Your browser does not support HTML video.
+        </video>
+    </TD>
+    </TR>
+</TABLE>
+<TABLE><TR><TD WIDTH="900" HEIGHT="20" ></TD></TR></TABLE>
+<TABLE>
+    <TR align="center" valign="center"style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="10">
+        <h5><br>Beispielanimation des Zeitverlaufs des Auslenkungswinkels &alpha; gibt die Vorstellung
+                    von dem Verlauf der Dämpfung über 10 Perioden</h5>
+    </TD>
+    </TR>
+    <TR align="center" valign="center"style="background-color:#F6F5F7">
+    <TD WIDTH="900" HEIGHT="650">
+        <video controls>
+            <source src={{pn_vid_b}}  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+            Your browser does not support HTML video.
+        </video>
+    </TD>
+    </TR>
+</TABLE>
+
+
+
+{% endblock content %}

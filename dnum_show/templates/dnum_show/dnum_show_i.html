@@ -1,0 +1,142 @@
+{% extends "m_app1s/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Dezimalzahl-Notation App</h3>
+{% endblock page_header %}
+{% block content %}
+<TABLE>
+<TR align="left" valign="center" >
+    <TD WIDTH="900" HEIGHT="60" >
+        <h5>Darstellung der Dezimalzahl und Bestimmung der Vorsätze von Einheiten</h5>
+    </TD>
+</TR>
+</TABLE>
+<TABLE>
+ <TR align="left" valign="center">
+    <TD WIDTH="500" HEIGHT="50" >
+        <h5><a href="{% url 'dnum_show:new_dnum' 1 %}">Eingabe der Dezimalzahl</a></h5>
+    </TD>
+ <TD WIDTH="400" HEIGHT="50" >
+        <h5><a href="https://de.wikipedia.org/wiki/Gleitkommazahl#Exponentialschreibweise">Wiki: Gleitkommazahl</a></h5>
+ </TD>
+ <TD WIDTH="500" HEIGHT="50" >
+        <h5><a href="https://de.wikipedia.org/wiki/Wissenschaftliche_Notation">Wiki: Wissenschaftliche Notation</a></h5>
+ </TD>
+ </TR>
+</TABLE>
+
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="600" HEIGHT="10">
+        <h5><br>&emsp;&nbsp;Eingegebene Dezimalzahl:</h5>
+    </TD>
+    <TD WIDTH="200">
+         <h5><br>{{dnumInput}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="600" HEIGHT="10">
+        <h5>&emsp;&nbsp;Anzahl der Nachkommastellen:</h5>
+    </TD>
+    <TD>
+         <h5>&nbsp;&nbsp;&nbsp;&nbsp;{{precInputDef}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="600" HEIGHT="10">
+        <h5>&emsp;&nbsp;Notation nach deutschen DIN Normen:</h5>
+    </TD>
+    <TD>
+         <h5>{{dnumMinus}}&nbsp;{{dnumDIN}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="600" HEIGHT="10">
+        <h5>&emsp;&nbsp;Notation im internationalen Raum:</h5>
+    </TD>
+    <TD>
+        <h5>{{dnumMinus}}&nbsp;{{dnumI}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="600" HEIGHT="10">
+        <h5>&emsp;&nbsp;Notation als Gleitkommazahl:</h5>
+    </TD>
+    <TD>
+        <h5>{{dnumMinus}}&nbsp;{{dnumS}}</h5>
+    </TD>
+</TR>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="600" HEIGHT="10">
+        <h5>&emsp;&nbsp;Wissenschaftliche Notation:</h5>
+    </TD>
+    <TD>
+        <h5>{{dnumMinus}}&nbsp;{{dnumM}}&nbsp;{{ten}}<sup>{{dnumP}}</sup></h5>
+    </TD>
+</TR>
+</TABLE>
+<TABLE><TR> <TD WIDTH="900" HEIGHT="20" ></TD></TR></TABLE>
+<TABLE>
+<TR >
+    <TD WIDTH="600" HEIGHT="10">
+        <h5>&emsp;&nbsp;Ergebnis der Kommaverschiebung</h5>
+    </TD>
+    <TD>
+        <font color="blue">
+        <h5>{{dnumMinus}}&nbsp;{{dnumMshift}}&nbsp;{{ten}}<sup>{{dnumPshift}}</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{dnumAbb}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{dnumPrefix}}</h5>
+        </font>
+    </TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR align="left" valign="center" style="background-color:#F6F5F7">
+    <TD WIDTH="600" HEIGHT="10">
+        <h5>&emsp;&nbsp;Kommaverschiebung nach links bzw. nach rechts</h5>
+    </TD>
+    <TD WIDTH="130" HEIGHT="10">
+        <h2><form action='l_shift' method='GET'>
+            {% buttons %}
+                    {% if dnumDIN == "Eingabefehler!" %}
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    {% endif %}
+                    {% if dnumDIN != "Eingabefehler!" %}
+                        <button name="submit" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<<<<<&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    {% endif %}
+
+            {% endbuttons %}
+
+            </form>
+        </h2>
+    </TD>
+    <TD WIDTH="270" HEIGHT="10">
+        <h2><form action='r_shift' method='GET'>
+            {% buttons %}
+                    {% if dnumDIN == "Eingabefehler!" %}
+                        <button class="btn btn-primary" type="button" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    {% endif %}
+                    {% if dnumDIN != "Eingabefehler!" %}
+                        <button name="submit" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>>>>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    {% endif %}
+
+
+            {% endbuttons %}
+
+            </form>
+        </h2>
+    </TD>
+</TR>
+</TABLE>
+<TABLE><TR> <TD WIDTH="900" HEIGHT="10" ></TD></TR></TABLE>
+<TABLE>
+    <TR >
+    <TD WIDTH="1000" HEIGHT="800">
+        <img src="{{dnum_fig}}">
+    </TD>
+    </TR>
+</TABLE>
+
+{% endblock content %}
+
+
+

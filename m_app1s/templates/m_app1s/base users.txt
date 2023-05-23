@@ -1,0 +1,10 @@
+{% if 'Dezimalzahl-Notation' in entry.text   %}
+                <a href="{% url 'dnum_show:dnum_show_i'  1 %}">Dezimalzahl-Notation App</a>
+            {% endif %}
+            {% if 'Zufallszahl-Muster' in entry.text   %}
+                <a href="{% url 'rw_visual:rw_visual_i' 3 %}">Zufallszahl-Muster App</a></a>
+            {% endif %}
+            {% if 'Physikalisches Pendel' in entry.text   %}
+                <a href="{% url 'pendulum_show:pendulum_show_i' 1 %}">Physikalisches Pendel App</a>
+            {% endif %}
+
