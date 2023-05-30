@@ -5,5 +5,5 @@ class DnumForm(forms.ModelForm):
     class Meta:
         model = DnumShow
         fields = ['dnumInput', 'precInputDef']
-        labels = {'text': 'Dezimalzahl', 'precInputDef': 'Nachkommastellen'}
+        labels = {'dnumInput': 'Dezimalzahl', 'precInputDef': 'Nachkommastellen'}
         

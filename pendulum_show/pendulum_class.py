@@ -147,7 +147,7 @@ class PendulumFig(Pendulum):
         #plt.show()
         plt.close()
         x_max = round(self.tn[-1], 1)
-        print(x_max)
+        #print(x_max)
         return x_max
 
 

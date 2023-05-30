@@ -27,8 +27,8 @@ def pendulum_show_i(request, pendulum_show_id):
     my_pf.p_steps()
     my_pf.p_arrays()
     my_pf.p_calc()
-    x_max = my_pf.p_fig_t()
-    t.x_max = x_max
+    t.x_max = my_pf.p_fig_t()
+    #t.x_max = x_max
     pn_fig = t.figure.url[:24] + '_' + us + '.png'
     t.save()
     mk_animv, mk_animx = t.mk_animv, t.mk_animx
