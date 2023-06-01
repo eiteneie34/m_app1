@@ -33,7 +33,7 @@ def pendulum_show_i(request, pendulum_show_id):
     t.save()
     mk_animv, mk_animx = t.mk_animv, t.mk_animx
     x_max_i = False
-    x_max_soll = 3.1
+    x_max_soll = 15.1
     if float(t.x_max) <= x_max_soll:
         x_max_i = True
     content = {
@@ -82,7 +82,7 @@ def pendulum_show_anim_v(request, pendulum_show_id):
     t.save()
     mk_animv, mk_animx = t.mk_animv, t.mk_animx
     x_max_i = False
-    x_max_soll = 3.1
+    x_max_soll = 15.1
     if float(t.x_max) <= x_max_soll:
         x_max_i = True
     pn_fig = t.figure.url[:24] + '_' + us + '.png'
@@ -130,7 +130,7 @@ def pendulum_show_anim_x(request, pendulum_show_id):
     t.save()
     mk_animv, mk_animx = t.mk_animv, t.mk_animx
     x_max_i = False
-    x_max_soll = 3.1
+    x_max_soll = 15.1
     if float(t.x_max) <= x_max_soll:
         x_max_i = True
     pn_fig = t.figure.url[:24] + '_' + us + '.png'

@@ -31,7 +31,7 @@ def rw_visual_i(request, rw_visual_id):
     x_values, y_values, point_numbers_random = my_fig.fill_walk()
     t.x_values, t.y_values, t.point_numbers_random = x_values, y_values, point_numbers_random
     t.save()
-    num_points_soll = int(500)
+    num_points_soll = int(2500)
     if int(num_points) <= num_points_soll:
         num_points_i = 'True'
 
@@ -61,7 +61,7 @@ def rw_visual_i(request, rw_visual_id):
         dot_cmap_label='kein Farbverlauf'
 
     rwvisual = t.figure.url[:25] + '_' + us + '.png'
-    num_points_soll = int(500)
+    num_points_soll = int(2500)
     if int(t.num_points) <= num_points_soll:
         num_points_i = True
     content = {

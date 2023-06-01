@@ -18,7 +18,7 @@ class PenShowForm(forms.ModelForm):
             'alpha_grad': 'Auslenkungswinkel alpha in Grad',
             'g': 'Gravitationsbeschleunigung g in m / s^2',
             'l': 'Länge des Pendels l in m',
-            'm':'Masse des Pendelkörpers m in kg',
+            'm':'Masse des Pendelkörpers m',
             'deltaR': 'Dämpfungskonstante der Reibungskraft delta in kg/s',
             'anzahlT': 'Anzahl der Perioden des harmonischen Pendels',
         }

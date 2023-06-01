@@ -22,7 +22,7 @@ class PenShow(models.Model):
     )
     l = models.CharField(default='0.25', max_length=10, choices=l_choices)
     m_choices = (
-        ('0.2367', '236,7 g Stahlkugel'), ('0.02367', '23,67 g Hartholzkugel'),('0.5744', '574,4 g Urankugel'),
+        ('0.2367', '236,70 g Stahlkugel'), ('0.02367', '23,67 g Hartholzkugel'),('0.5744', '574,40 g Urankugel'),
     )
     m = models.CharField(default='0.2367', max_length=10, choices=m_choices)
     rK = models.CharField(default='0.02', max_length=10)

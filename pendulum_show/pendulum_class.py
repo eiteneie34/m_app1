@@ -128,10 +128,13 @@ class PendulumFig(Pendulum):
         ax1.scatter(self.tn, self.alphaAn, s=5, alpha=0.8, color=self.amarkercolor, label=self.pendelA_str)
 
         # Title x- and ylabel
+        ax1.set_xlim(self.tn[0], self.tn[-1])
+        ax1.set_ylim(-1.57, 1.57)
         ax1.axhline(y=0, xmin=0, xmax=1, color='grey')
         ax1.set_title(self.title, fontsize=10)
         ax1.set_xlabel(self.xlabel, fontsize=8)
         ax1.set_ylabel(self.ylabel, fontsize=8)
+
         ax1.tick_params(axis='both', which='both', labelsize=6)
         ax1.grid(which='both', color='grey', linestyle=':', linewidth=0.5)
         ax1.set_yticks(ticks=[-1.57, -1.05, -0.52, 0.0, 0.52, 1.05, 1.57], minor=False)
@@ -139,9 +142,9 @@ class PendulumFig(Pendulum):
         #ax.get_yaxis().set_visible(False)
         ax1.legend(loc='best', labelcolor='black', facecolor=self.figcolor, edgecolor='grey', fontsize=8)
         pen_show = f'm_app1/media/pendulum/pen_show_{self.us}.png'
-        plt.savefig(pen_show, dpi=200, facecolor=self.figcolor, edgecolor='grey',
-                            orientation='portrait', format=None,
-                            transparent=False, bbox_inches=None, pad_inches=0.1,
+        plt.savefig(pen_show, dpi='figure', facecolor=self.figcolor, edgecolor='grey',
+                            orientation='portrait', format='png',
+                            transparent=False, bbox_inches=None, pad_inches=None,
                             metadata=None)
 
         #plt.show()
@@ -179,8 +182,8 @@ class PendulumFigAnim(Pendulum):
             axA.set_ylabel(self.ylabel, fontsize=8)
 
             axA.set_xlim(self.tn[0], self.tn[-1])
-            axA.set_ylim(-1.6, 1.6)
-            axA.tick_params(axis='both', which='both', labelsize=5)
+            axA.set_ylim(-1.57, 1.57)
+            axA.tick_params(axis='both', which='both', labelsize=6)
             axA.grid(which='both', color='grey', linestyle=':', linewidth=0.5)
             axA.set_yticks(ticks=[-1.57, -1.05, -0.52, 0.0, 0.52,  1.05, 1.57 ],  minor=False)
             axA.set_yticklabels(labels=['-90', '-60', '-30', '0', '30', '60', '90'],  fontdict=None, minor=False)
