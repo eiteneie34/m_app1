@@ -29,9 +29,9 @@ class RwVisual(models.Model):
     )
     y_distance = models.CharField(default='0 1 2 3 4', max_length=50, choices=y_distance_choices)
 
-    x_values = models.CharField(default='0 1 2 3 4', max_length=150000)
-    y_values = models.CharField(default='0 1 2 3 4', max_length=150000)
-    point_numbers_random = models.CharField(default='0 1 2 3 4', max_length=150000)
+    x_values = models.CharField(default='0 1 2 3 4', max_length=1000000)
+    y_values = models.CharField(default='0 1 2 3 4', max_length=1000000)
+    point_numbers_random = models.CharField(default='0 1 2 3 4', max_length=1000000)
     dot_size_v = models.BooleanField(default=False)
     dot_alpha_v = models.BooleanField(default=False)
     dot_marker_choices = (
