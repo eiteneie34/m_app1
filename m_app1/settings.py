@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-8%-@#5$(i-@&n)+7v&k!b+k3y+ddh3%!$f)cl7x3t@ft%71q_2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['www.servalmatheapps.de','servalmatheapps.de','164.92.131.67','0.0.0.0','127.0.0.1','localhost']
 
 # Application definition
